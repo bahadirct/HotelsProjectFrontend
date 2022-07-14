@@ -1,18 +1,20 @@
 
-
-    
-    
-    
 <div class="container">
     <div class="row mb-4 mt-5">
       <div class="col">
-        <div class="card text-white bg-dark" style="border-radius: 10px;">
-            <h5  class="card-header">Veri Tabanı Dosyası Yükleme</h5>
+        <div class="card text-white bg-dark" style="border-radius: 5px;">
+            <h5  class="card-header">Veri Tabanı İşlemleri</h5>
             <div class="card-body">
               <p   class="card-text">Verilerinizin bulunduğu *csv dosyanızı buradan yükleyebilirsiniz.</p>
               <div>
-                <input class="form-control form-control" id="formFileLg" type="file">
+                <form class="form-horizontal">
+                <div class="form-group">
+                   <input (change)="onChange($event)" class="form-control form-control"  type="file">
+                   <button (click)="UploadCsv()" type="button" class="btn btn-success mt-2 ">Dosyayı Yükle</button>
+                </div>
+              </form>
               </div>
+              
               
             </div>
           </div>
@@ -21,17 +23,41 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="card text-white bg-dark" style="border-radius: 10px;">
-            <h5  class="card-header">Veri Tabanı</h5>
+        <div class="card text-white bg-dark" style="border-radius: 5px;">
+        
+        <div style="display: inline-block;">
+          <h5  class="card-header">Veri Tabanı Tablosu</h5>
+          <div>
+         <div style="text-align: right;"> 
+          <button (click)="WriteAsJson()" style="margin-right: 10px" type="button" class="btn btn-success mt-2">Json olarak dışa aktar</button>
+          <button (click)="WriteAsXml()" style="margin-right: 10px;" type="button" class="btn btn-success  mt-2">Xml olarak dışa aktar</button></div>
+         
             <div class="card-body">
-            <table class="table">
-              <tr>
-                <td>deneme</td>
-                <td>deneme</td>
-                <td>deneme</td>
-                <td>deneme</td>
-                <td>deneme</td>
-              </tr>
+            <div *ngIf="dataLoaded==false" class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+            </div>     
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Stars</th>
+                  <th scope="col">Contact</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Url</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let hotel of hotels">              
+                <td>{{hotel.name}}</td>
+                <td>{{hotel.address}}</td>
+                <td>{{hotel.stars}}</td>
+                <td>{{hotel.contact}}</td>
+                <td>{{hotel.phone}}</td>
+                <td>{{hotel.url}}</td>
+                </tr>
+              </tbody>
             </table>
             </div>
           </div>
