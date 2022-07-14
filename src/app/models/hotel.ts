@@ -1,10 +1,8 @@
 export interface Hotel{
-    Id:number;
-    Name:string;
-    Address:string;
-    Star:number;
-    Contact:string;
-    Phone:string;
-    Url:string;
-
+    name:string;
+    address:string;
+    stars:number;
+    contact:string;
+    phone:string;
+    url:string;
 }
